@@ -1,4 +1,5 @@
 pipeline {
+<<<<<<< HEAD
 
     agent {
         docker {
@@ -11,9 +12,31 @@ pipeline {
             steps {
                 sh 'node -v'
                 sh 'echo "Run your tests here (npm install, npm test, etc)"'
+=======
+    agent {
+        docker {
+            image 'python:3.9-slim'
+            args '-v $WORKSPACE:/app -w /app'
+        }
+    }
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run App') {
+            steps {
+                sh 'python app.py &'
+                sh 'sleep 10'
+                sh 'curl http://localhost:5000'
+>>>>>>> 2733635 (flaskapp)
             }
         }
     }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2733635 (flaskapp)
